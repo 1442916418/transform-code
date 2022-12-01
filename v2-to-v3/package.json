@@ -1,0 +1,22 @@
+{
+  "name": "v2-to-v3",
+  "version": "1.0.0",
+  "description": "Vue2 选项式写法转换成 Vue3 组合式写法",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/1442916418/transform-code.git"
+  },
+  "author": "yss",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/1442916418/transform-code/issues"
+  },
+  "homepage": "https://github.com/1442916418/transform-code#readme"
+}

@@ -1,0 +1,15 @@
+{
+  "name": "v2-permissions-read",
+  "version": "1.0.0",
+  "description": "Vue2 读取权限数据",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "vue2",
+    "read"
+  ],
+  "author": "yss",
+  "license": "ISC"
+}

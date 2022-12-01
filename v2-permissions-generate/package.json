@@ -1,0 +1,17 @@
+{
+  "name": "v2-permissions-generate",
+  "version": "1.0.0",
+  "description": "Vue2 添加指令权限",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "vue2",
+    "权限",
+    "按钮权限",
+    "列表权限"
+  ],
+  "author": "yss",
+  "license": "ISC"
+}

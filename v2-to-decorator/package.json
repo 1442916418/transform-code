@@ -1,0 +1,16 @@
+{
+  "name": "v2-to-decorator",
+  "version": "1.0.0",
+  "description": "Vue2 选项式写法转换成类写法",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Vue2",
+    "vue-class-component",
+    "vue-property-decorator"
+  ],
+  "author": "yss",
+  "license": "ISC"
+}
