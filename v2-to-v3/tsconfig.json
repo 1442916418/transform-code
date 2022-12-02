@@ -1,0 +1,15 @@
+{
+  "extends": "../config/base.json",
+  "compilerOptions": {
+    "types": [
+      "node"
+    ]
+  },
+  "include": [
+    "*.ts",
+    "./**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

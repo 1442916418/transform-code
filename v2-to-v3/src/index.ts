@@ -7,7 +7,7 @@ import fse from 'fs-extra'
 
 import handleVue from './handle-vue'
 
-import { handleWriteFile, handleDataToString, listFiles } from '../utils/index'
+import { handleWriteFile, handleDataToString, listFiles } from '@tools'
 
 const { log, error } = console
 
