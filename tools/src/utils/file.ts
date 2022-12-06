@@ -101,6 +101,7 @@ export const listFiles = (rootPath: string, excludePath?: string[]) => {
   getFiles(rootPath, fileList, excludePath)
   return fileList
 }
+
 /**
  * 递归列出所有文件
  * @param parentPath 上一级目录

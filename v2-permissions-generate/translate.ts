@@ -92,8 +92,8 @@ class Translate {
    */
   static getBaiBuTranslateData(data: string, isJson: boolean): void {
     const query = data
-    const appid = '20211227001040098'
-    const key = 'FNIO9tKNiNH1uvHG3amU'
+    const appid = ''
+    const key = ''
     const salt = new Date().getTime()
     const from = 'zh'
     const to = 'en'

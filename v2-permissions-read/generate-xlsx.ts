@@ -162,7 +162,7 @@ class GenerateXlsx {
     // BUG: 不支持三级路径
     // 匹配接口数据，而不是本地项目声明的
     // 匹配到以下菜单，则使用自定义的一级菜单路径
-    const virtualMenu = ['员工管理', '工单管理', '散客', '团队', '收入', '利润', '班车导游加点率']
+    const virtualMenu = ['员工管理']
 
     const findRouteData = this.data.find((v) => {
       let urls = urlPath.split('/')
@@ -254,7 +254,7 @@ class GenerateXlsx {
 
     if (!that.baseUrl || !that.token) return
 
-    const url = that.baseUrl + 'user/systemMenu/querySystemMenuModule/'
+    const url = that.baseUrl + ''
 
     return new Promise((resolve, reject) => {
       request(

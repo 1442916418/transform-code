@@ -1,10 +1,10 @@
 import path from 'path'
 
-import { handleVueConfig } from '../types'
+import { handleVueConfig } from '$types-v3'
 
 import plugins from './plugins'
 import { PLUGINS_LIST } from '../constant'
-import { handleWriteFile, handleDataToString } from '../../utils/index'
+import { handleWriteFile, handleDataToString } from '@tools'
 
 import prettier from 'prettier'
 import { parse } from '@babel/parser'

@@ -40,3 +40,22 @@ export const isFileExist = (dir: fs.PathLike): boolean => {
 
   return fs.existsSync(dir)
 }
+
+/**
+ * 校验配置路径
+ * @param entry 入口路径
+ */
+export const checkPath = (entry: string) => {
+  let result = true
+
+  if (!entry) {
+    console.log('请传入入口路径')
+    result = false
+  }
+  if (!isFileExist(entry)) {
+    console.log('入口路径无效')
+    result = false
+  }
+
+  return result
+}
