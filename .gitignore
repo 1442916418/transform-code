@@ -69,3 +69,6 @@ common/autoinstallers/*/.npmrc
 
 # History
 .history
+
+# Print
+v2-to-v3/json

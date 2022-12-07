@@ -13,7 +13,7 @@ program.version(packageJSON.version)
 program
   .option('-v, --version', 'output tool version')
   .option('-e, --entry <type>', 'custom entry')
-  .option('-o, --output <type>', 'output dirtory')
+  .option('-o, --output <type>', 'output path')
 program.parse(process.argv)
 
 const options = program.opts()
@@ -21,6 +21,5 @@ const options = program.opts()
 const { entry, output = 'src-output' } = options
 
 if (checkPath(entry)) {
-  console.log('🚀 ~ file: index.ts:19 ~ entry, output', entry, output)
   new Pretreatment({ entry, output })
 }

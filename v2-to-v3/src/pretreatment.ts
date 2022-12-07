@@ -10,10 +10,6 @@ import { handleWriteFile, handleDataToString, listFiles } from '@tools'
 
 const { log, error } = console
 
-const getFilePath = (v: string): string => path.resolve(__dirname, v)
-
-const OUT_PATH = 'out-basic-admin'
-
 class Pretreatment {
   /**
    * @name: 是否生成结果文件
@@ -44,7 +40,7 @@ class Pretreatment {
     log(chalk.green`\n  开始处理 \n`)
 
     this.handleFilePaths()
-    this.handleTransform()
+    // this.handleTransform()
   }
 
   /**
@@ -58,9 +54,9 @@ class Pretreatment {
 
     this.handleProgressInit()
 
-    const { paths, entry, progressTop, handleTransformsContent, handleOutputFolder } = this
+    const { paths, entry, output, progressTop, handleTransformsContent, handleOutputFolder } = this
 
-    const outFullPath = path.resolve(process.cwd(), OUT_PATH)
+    const outFullPath = path.resolve(process.cwd(), output)
 
     let result = true
 
@@ -171,10 +167,10 @@ class Pretreatment {
   handleFilePaths() {
     this.paths = listFiles(this.entry)
 
-    handleWriteFile({
-      path: './json/paths.json',
-      content: handleDataToString(this.paths)
-    })
+    // handleWriteFile({
+    //   path: '.\\json\\paths.json',
+    //   content: handleDataToString(this.paths)
+    // })
   }
 
   /**

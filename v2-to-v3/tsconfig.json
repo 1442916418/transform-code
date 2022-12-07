@@ -1,9 +1,15 @@
 {
   "extends": "../config/base.json",
   "compilerOptions": {
+    "baseUrl": "../",
     "types": [
       "node"
     ]
+  },
+  "ts-node": {
+    "compilerOptions": {
+      "baseUrl": "../"
+    }
   },
   "include": [
     "*.ts",
