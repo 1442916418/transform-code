@@ -3,7 +3,7 @@ import chalk from 'chalk'
 import progress from 'progress'
 import fse from 'fs-extra'
 
-import handleVue from './handle-vue'
+import HandleVue from './handle-vue'
 
 import * as types from '$types-v3'
 import { handleWriteFile, handleDataToString, listFiles } from '@tools'
@@ -40,7 +40,7 @@ class Pretreatment {
     log(chalk.green`\n  开始处理 \n`)
 
     this.handleFilePaths()
-    // this.handleTransform()
+    this.handleTransform()
   }
 
   /**
@@ -123,7 +123,7 @@ class Pretreatment {
     switch (ext) {
       case '.vue':
         try {
-          const newSourceCode = handleVue(source, config)
+          const newSourceCode = HandleVue.init(source, config)
 
           if (typeof newSourceCode === 'string') {
             fse.writeFileSync(outFilePath, newSourceCode)

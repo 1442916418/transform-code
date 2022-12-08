@@ -1,5 +1,4 @@
 import { Command } from 'commander'
-// BUG: 找不到模块
 import { checkPath } from '@tools'
 
 import Pretreatment from './pretreatment'

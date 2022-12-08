@@ -16,100 +16,102 @@ const babel = require('@babel/core')
 const log = console.log
 const getFilePath = (v: string): string => path.resolve(__dirname, v)
 
-const prettierCode = (code: string, parser: 'vue' | 'typescript') => {
-  return prettier.format(code, {
-    trailingComma: 'none',
-    printWidth: 120,
-    tabWidth: 2,
-    useTabs: false,
-    semi: false,
-    singleQuote: true,
-    bracketSpacing: true,
-    parser
-  })
-}
+class HandleVue {
+  /**
+   * 处理 vue 转换
+   * @param sourceCode 源文件内容
+   * @param config 基础配置
+   */
+  public static init(sourceCode: string, config: handleVueConfig) {
+    const SFC = compiler.parseComponent(sourceCode)
+    const scriptContent = SFC?.script?.content ?? ''
 
-/**
- * @name: 获取新文件内容
- */
-const getNewFileContent = (SFC: any, scriptCode: string) => {
-  return prettierCode(`<script lang="ts" setup>\n${scriptCode || ''}\n</script>`, 'vue')
+    this.handlePrintScriptAst(scriptContent, config.srcFilePath)
 
-  // const { template, styles } = SFC
-
-  // let stylesContent = ''
-
-  // if (styles && styles.length) {
-  //   styles.forEach((v: any) => {
-  //     let attrs = ''
-
-  //     if (v.attrs && v.attrs.lang) {
-  //       attrs += `lang=\"${v.attrs.lang}\" `
-  //     }
-
-  //     if (v.attrs && v.attrs.scoped) {
-  //       attrs += 'scoped'
-  //     }
-
-  //     stylesContent += `<style ${attrs}>${v.content ? v.content : ''}</style>\n\r`
-  //   })
-  // }
-
-  // return `<template>${template.content || ''}</template>\n\r<script lang="ts" setup>${
-  //   scriptCode || ''
-  // }</script>\n\r${stylesContent}`
-}
-
-/**
- * 打印未处理之前的 Script AST
- * @param scriptContent 源数据
- * @param srcFilePath 原路径
- */
-const handlePrintScriptAst = (scriptContent: string, srcFilePath: string) => {
-  try {
-    const scriptAst = parse(scriptContent, {
-      sourceType: 'module',
-      plugins: PLUGINS_LIST as any
-    })
-
-    if (scriptAst) {
-      const name = srcFilePath.split(path.sep)
-
-      handleWriteFile({
-        path: getFilePath(`../../json/vue3/${name[name.length - 1]}.json`),
-        content: handleDataToString(scriptAst)
+    try {
+      const result = babel.transformSync(scriptContent, {
+        parserOpts: {
+          sourceType: 'module',
+          plugins: PLUGINS_LIST
+        },
+        plugins
       })
+
+      return this.getNewFileContent(SFC, result && result.code ? result.code : '')
+    } catch (error) {
+      console.error('handle vue error: ', error)
+      return ''
     }
-  } catch (error) {
-    log(error)
   }
-}
 
-/**
- * 处理 vue 转换
- * @param sourceCode 源文件内容
- * @param config 基础配置
- */
-const init = (sourceCode: string, config: handleVueConfig) => {
-  const SFC = compiler.parseComponent(sourceCode)
-  const scriptContent = SFC?.script?.content ?? ''
-
-  // handlePrintScriptAst(scriptContent, config.srcFilePath)
-
-  try {
-    const result = babel.transformSync(scriptContent, {
-      parserOpts: {
-        sourceType: 'module',
-        plugins: PLUGINS_LIST
-      },
-      plugins
+  private static prettierCode(code: string, parser: 'vue' | 'typescript') {
+    return prettier.format(code, {
+      trailingComma: 'none',
+      printWidth: 120,
+      tabWidth: 2,
+      useTabs: false,
+      semi: false,
+      singleQuote: true,
+      bracketSpacing: true,
+      parser
     })
+  }
 
-    return getNewFileContent(SFC, result && result.code ? result.code : '')
-  } catch (error) {
-    console.error('handle vue error: ', error)
-    return ''
+  /**
+   * @name: 获取新文件内容
+   */
+  private static getNewFileContent(SFC: any, scriptCode: string) {
+    return this.prettierCode(`<script lang="ts" setup>\n${scriptCode || ''}\n</script>`, 'vue')
+
+    // const { template, styles } = SFC
+
+    // let stylesContent = ''
+
+    // if (styles && styles.length) {
+    //   styles.forEach((v: any) => {
+    //     let attrs = ''
+
+    //     if (v.attrs && v.attrs.lang) {
+    //       attrs += `lang=\"${v.attrs.lang}\" `
+    //     }
+
+    //     if (v.attrs && v.attrs.scoped) {
+    //       attrs += 'scoped'
+    //     }
+
+    //     stylesContent += `<style ${attrs}>${v.content ? v.content : ''}</style>\n\r`
+    //   })
+    // }
+
+    // return `<template>${template.content || ''}</template>\n\r<script lang="ts" setup>${
+    //   scriptCode || ''
+    // }</script>\n\r${stylesContent}`
+  }
+
+  /**
+   * 打印未处理之前的 Script AST
+   * @param scriptContent 源数据
+   * @param srcFilePath 原路径
+   */
+  private static handlePrintScriptAst(scriptContent: string, srcFilePath: string) {
+    try {
+      const scriptAst = parse(scriptContent, {
+        sourceType: 'module',
+        plugins: PLUGINS_LIST as any
+      })
+
+      if (scriptAst) {
+        const name = srcFilePath.split(path.sep)
+
+        handleWriteFile({
+          path: getFilePath(`..\\..\\json\\vue3\\${name[name.length - 1]}.json`),
+          content: handleDataToString(scriptAst)
+        })
+      }
+    } catch (error) {
+      log(error)
+    }
   }
 }
 
-export default init
+export default HandleVue
