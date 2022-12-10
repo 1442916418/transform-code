@@ -7,7 +7,7 @@
     "doc": "docs"
   },
   "scripts": {
-    "start": "ts-node --project ./tsconfig.json -r tsconfig-paths/register src/index.ts"
+    "start": "ts-node -P ./tsconfig.json -r tsconfig-paths/register src/index.ts"
   },
   "repository": {
     "type": "git",

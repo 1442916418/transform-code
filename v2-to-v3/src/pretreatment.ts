@@ -62,7 +62,7 @@ class Pretreatment {
 
     paths.forEach(({ path: srcPath }) => {
       try {
-        let filePath = srcPath.substring(entry.length, srcPath.length)
+        let filePath = srcPath.substring(entry.length)
         let outPath = path.join(outFullPath, filePath)
 
         handleOutputFolder(outPath)
@@ -83,7 +83,7 @@ class Pretreatment {
     if (result) {
       console.log(chalk.green`\n  处理成功!\n`)
     } else {
-      console.log(chalk.yellow`\n  处理失败!\n`)
+      console.log(chalk.red`\n  处理失败!\n`)
     }
   }
 

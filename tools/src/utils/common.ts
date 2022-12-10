@@ -51,8 +51,7 @@ export const checkPath = (entry: string) => {
   if (!entry) {
     console.log('请传入入口路径')
     result = false
-  }
-  if (!isFileExist(entry)) {
+  } else if (!isFileExist(entry)) {
     console.log('入口路径无效')
     result = false
   }

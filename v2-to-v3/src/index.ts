@@ -19,6 +19,8 @@ const options = program.opts()
 
 const { entry, output = 'src-output' } = options
 
-if (checkPath(entry)) {
-  new Pretreatment({ entry, output })
+if (!checkPath(entry)) {
+  process.exit(0)
 }
+
+new Pretreatment({ entry, output })
